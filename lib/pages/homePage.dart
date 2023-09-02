@@ -22,16 +22,50 @@ class _HomePageState extends State<HomePage> {
       initialPage: paginaAtual
     );
   }
-  
+
+  setPaginaAtual(pagina){
+    setState(() {
+      paginaAtual = pagina;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         controller: pc,
-        children: [
+        children: const [
           MoedasPage(),
           FavoritesPage(),
         ],
+        onPageChanged: setPaginaAtual,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: paginaAtual,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.list
+            ),
+            label: "Todas"
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.star
+            ),
+            label: "Favoritas"
+          )
+        ],
+        onTap: (pagina){
+          pc.animateToPage(
+            pagina, 
+            duration: const Duration(
+              milliseconds: 400
+            ), 
+            curve: Curves.ease
+          );
+        },
+        backgroundColor: Colors.grey[100],
       ),
     );
   }
