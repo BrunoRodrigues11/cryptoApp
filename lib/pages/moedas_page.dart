@@ -14,13 +14,49 @@ class _MoedasPageState extends State<MoedasPage> {
   final tabela = MoedaRepository.tabela;
   NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: 'R\$');
   List<Moeda> selecionadas = [];
-  
+
+  appBarDinamica(){
+    if (selecionadas.isEmpty) {
+      return AppBar(
+          title: const Text("Cripto Moedas"),
+      );      
+    } else {
+      return AppBar(
+        leading: IconButton(
+          onPressed: () {
+            setState(() {
+              selecionadas = [];
+            });
+          }, 
+          icon: const Icon(
+            Icons.cancel
+          )
+        ),
+        title: Text(
+          "${selecionadas.length} selecionadas",
+        ),
+        backgroundColor: Colors.blueGrey[50],
+        elevation: 1,
+        iconTheme: const IconThemeData(
+          color: Colors.black87
+        ),
+        toolbarTextStyle: const TextTheme(
+          titleLarge: TextStyle(
+            color: Colors.black87
+          )
+        ).bodyMedium, titleTextStyle: const TextTheme(
+          titleLarge: TextStyle(
+            color: Colors.black87
+          )
+        ).titleLarge,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cripto Moedas"),
-      ),
+      appBar: appBarDinamica(),
       body: ListView.separated(
         itemBuilder: (BuildContext context, int moeda){
           return ListTile(
