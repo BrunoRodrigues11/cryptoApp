@@ -1,25 +1,13 @@
-import 'package:cryptoapp/pages/homePage.dart';
-import 'package:cryptoapp/pages/moedas_page.dart';
+import 'package:cryptoapp/myApp.dart';
+import 'package:cryptoapp/repository/favorite_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CryptoApp',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FavoritesRepository(),
+      child: const MyApp()
       ),
-      home:  const HomePage()
     );
-  }
 }
-

@@ -34,11 +34,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: PageView(
         controller: pc,
+        onPageChanged: setPaginaAtual,
         children: const [
           MoedasPage(),
           FavoritesPage(),
         ],
-        onPageChanged: setPaginaAtual,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: paginaAtual,
