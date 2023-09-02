@@ -29,7 +29,7 @@ class _MoedasPageState extends State<MoedasPage> {
             });
           }, 
           icon: const Icon(
-            Icons.cancel
+            Icons.arrow_back
           )
         ),
         title: Text(
@@ -42,11 +42,15 @@ class _MoedasPageState extends State<MoedasPage> {
         ),
         toolbarTextStyle: const TextTheme(
           titleLarge: TextStyle(
-            color: Colors.black87
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+            fontSize: 18
           )
         ).bodyMedium, titleTextStyle: const TextTheme(
           titleLarge: TextStyle(
-            color: Colors.black87
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+            fontSize: 18
           )
         ).titleLarge,
       );
@@ -98,7 +102,23 @@ class _MoedasPageState extends State<MoedasPage> {
         padding: const EdgeInsets.all(15),
         separatorBuilder: (_,__) => const Divider(), 
         itemCount: tabela.length,
-      )
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: selecionadas. isNotEmpty 
+        ? FloatingActionButton.extended(
+          onPressed: () {}, 
+          icon: const Icon(
+            Icons.star
+          ),
+          label: const Text(
+            "FAVORITAR",
+            style: TextStyle(
+              letterSpacing: 0,
+              fontWeight: FontWeight.bold
+            ),
+          )
+        )
+        : null,
     );
   }
 }
